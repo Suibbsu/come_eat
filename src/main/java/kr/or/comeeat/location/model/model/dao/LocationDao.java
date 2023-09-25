@@ -101,7 +101,6 @@ public class LocationDao {
 	public List reviewBest(int end, int start) {
 		String query = "SELECT L.* ,ROUND((SELECT AVG(REVIEW_GRADE) FROM REVIEW R WHERE R.LO_NO=L.LO_NO),1) STAR_RATE FROM LOCATION L INNER JOIN (SELECT LO_NO FROM (SELECT ROWNUM AS RNUM, R.* FROM (SELECT LO_NO, AVG(REVIEW_GRADE) GRADE, COUNT(*) COUNT FROM REVIEW GROUP BY LO_NO ORDER BY GRADE DESC, COUNT DESC, LO_NO DESC) R ORDER BY 1)  WHERE RNUM BETWEEN ? AND ?) R  ON L.LO_NO = R.LO_NO";
 		List list = jdbc.query(query, locationRowMapper, start, end);
-		System.out.println(list);
 		return list;
 	}
 	

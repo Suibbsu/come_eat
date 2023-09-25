@@ -62,9 +62,6 @@ public class LocationService {
 					total = locationDao.searchTotalLocode(search,loCode);
 
 				}else if(searchRE.contains("인기")) {	
-					System.out.println(searchRE);
-					System.out.println(end);
-					System.out.println(start);
 					list = locationDao.reviewBest(end,start);
 					total = locationDao.searchTotalBest();
 					
@@ -324,7 +321,6 @@ public class LocationService {
 				e.printStackTrace();
 			}
 			loCode = list.get(0).getLoCode();
-			System.out.println(loCode);
 			//최초 db insert
 			int result = locationDao.locationInsert(list);
 			if(result>0) {
